@@ -12,6 +12,15 @@
   <body>
     <p class="notice"><%= notice %></p>
     <p class="alert"><%= alert %></p>
+    <div>
+      <% if user_signed_in? %>
+        <%= link_to 'PROFILE', edit_user_registration_path %>
+        <%= button_to 'LOGOUT', destroy_user_session_path, method: :delete %>
+      <% else %>
+        <%= link_to 'LOGIN', new_user_session_path %>
+        <%= link_to 'SIGNUP', new_user_registration_path %>
+      <% end %>
+    </div>
     <main class="container mx-auto mt-28 px-5 flex">
       <%= yield %>
     </main>
