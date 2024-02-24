@@ -4,7 +4,7 @@ class CategoriesController < ApplicationController
 
   # GET /categories
   def index
-    @categories = Category.all
+    @categories = current_user.categories.all
   end
 
   # GET /categories/1
@@ -22,7 +22,7 @@ class CategoriesController < ApplicationController
 
   # POST /categories
   def create
-    @category = Category.new(category_params)
+    @category = current_user.categories.create(category_params)
 
     if @category.save
       redirect_to @category, notice: "Category was successfully created."
@@ -54,6 +54,6 @@ class CategoriesController < ApplicationController
 
     # Only allow a list of trusted parameters through.
     def category_params
-      params.require(:category).permit(:name, :user_id)
+      params.require(:category).permit(:name)
     end
 end

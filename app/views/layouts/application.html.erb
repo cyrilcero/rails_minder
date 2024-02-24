@@ -9,19 +9,13 @@
     <%= stylesheet_link_tag "application", "data-turbo-track": "reload" %>
     <%= javascript_importmap_tags %>
   </head>
-  <body>
-    <p class="notice"><%= notice %></p>
-    <p class="alert"><%= alert %></p>
-    <div>
-      <% if user_signed_in? %>
-        <%= link_to 'PROFILE', edit_user_registration_path %>
-        <%= button_to 'LOGOUT', destroy_user_session_path, method: :delete %>
-      <% else %>
-        <%= link_to 'LOGIN', new_user_session_path %>
-        <%= link_to 'SIGNUP', new_user_registration_path %>
-      <% end %>
-    </div>
-    <main class="container mx-auto mt-28 px-5 flex">
+  <body class="relative">
+    <%= render 'flash_msg' %>
+    <nav class="flex justify-between px-4 py-2 bg-blue-400 text-white">
+      <%= link_to "HOME", root_path %>
+      <%= button_to "Logout", destroy_user_session_path, method: :delete%>
+    </nav>
+    <main class="container mx-auto mt-28 px-5 flex flex-col">
       <%= yield %>
     </main>
   </body>
