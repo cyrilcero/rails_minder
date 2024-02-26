@@ -1,14 +1,15 @@
 class CategoriesController < ApplicationController
-  before_action :authenticate_user!
   before_action :set_category, only: %i[ show edit update destroy ]
 
   # GET /categories
   def index
+    @current_user = current_user
     @categories = current_user.categories.all
   end
 
   # GET /categories/1
   def show
+
   end
 
   # GET /categories/new
@@ -27,7 +28,7 @@ class CategoriesController < ApplicationController
     if @category.save
       redirect_to @category, notice: "Category was successfully created."
     else
-      render :new, status: :unprocessable_entity
+      render :new, status: 422
     end
   end
 
@@ -42,8 +43,9 @@ class CategoriesController < ApplicationController
 
   # DELETE /categories/1
   def destroy
-    @category.destroy!
-    redirect_to categories_url, notice: "Category was successfully destroyed.", status: :see_other
+    @category.destroy
+    flash[:alert] = "Category permanently deleted."
+    redirect_to categories_path, status: :see_other
   end
 
   private
