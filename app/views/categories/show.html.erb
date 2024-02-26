@@ -1,15 +1,24 @@
-<div class="mx-auto md:w-2/3 w-full flex">
+<div class="mx-auto w-2/3">
   <div class="mx-auto">
     <% if notice.present? %>
       <p class="py-2 px-3 bg-green-50 mb-5 text-green-500 font-medium rounded-lg inline-block" id="notice"><%= notice %></p>
     <% end %>
-
-    <%= render @category %>
-
-    <%= link_to "Edit this category", edit_category_path(@category), class: "mt-2 rounded-lg py-3 px-5 bg-gray-100 inline-block font-medium" %>
-    <div class="inline-block ml-2">
-      <%= button_to "Destroy this category", category_path(@category), method: :delete, class: "mt-2 rounded-lg py-3 px-5 bg-gray-100 font-medium" %>
+    <div class="flex flex-col gap-2">
+      <div class="flex justify-between">
+        <h1 class="text-3xl font-extrabold"><%= @category.name %></h1>
+        <div class="flex items-center gap-2">
+          <%= link_to new_category_task_path(@category), class: "rounded-lg bg-green-100 py-1 px-2" do %>
+            <i class="fa-solid fa-plus"></i>
+          <% end %>
+          <%= link_to edit_category_path(@category), class: "rounded-lg  bg-gray-100 py-1 px-2" do %>
+            <i class="fa-solid fa-pen-to-square"></i>
+          <% end %>
+          <%= button_to category_path(@category), method: :delete, class: "rounded-lg  bg-red-100 py-1 px-2" do%>
+            <i class="fas fa-trash"></i>
+          <% end %>
+        </div>
+      </div>
+      <% @category.tasks.each do |task| %>
+        <%= render partial: 'task', locals: { category: @category, task: task } %>
+      <% end %>
     </div>
-    <%= link_to "Back to categories", categories_path, class: "ml-2 rounded-lg py-3 px-5 bg-gray-100 inline-block font-medium" %>
-  </div>
-</div>

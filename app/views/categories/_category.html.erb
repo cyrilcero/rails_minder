@@ -1,14 +1,9 @@
 <div id="<%= dom_id category %>">
-  <p class="my-5">
+  <p class="my-5 item">
     <strong class="block font-medium mb-1">Name:</strong>
     <%= category.name %>
   </p>
-
-  <p class="my-5">
-    <strong class="block font-medium mb-1">User:</strong>
-    <%= category.user_id %>
-  </p>
-
+  <%= link_to "Add Tasks", new_category_task_path(category), class: "rounded-lg py-3 px-5 w-full bg-green-100 inline-block font-medium text-center" %>
   <% if action_name != "show" %>
     <%= link_to "Show this category", category, class: "rounded-lg py-3 px-5 bg-gray-100 inline-block font-medium" %>
     <%= link_to "Edit this category", edit_category_path(category), class: "rounded-lg py-3 ml-2 px-5 bg-gray-100 inline-block font-medium" %>

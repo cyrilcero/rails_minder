@@ -5,17 +5,18 @@
     <meta name="viewport" content="width=device-width,initial-scale=1">
     <%= csrf_meta_tags %>
     <%= csp_meta_tag %>
+    <%= favicon_link_tag asset_path("data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><text y=%22.9em%22 font-size=%2290%22>🧠</text></svg>") %>
     <%= stylesheet_link_tag "tailwind", "inter-font", "data-turbo-track": "reload" %>
     <%= stylesheet_link_tag "application", "data-turbo-track": "reload" %>
     <%= javascript_importmap_tags %>
   </head>
-  <body class="relative">
-    <%= render 'flash_msg' %>
-    <nav class="flex justify-between px-4 py-2 bg-blue-400 text-white">
+  <body class="relative w-full min-h-dvh h-screen">
+    <%= render partial: 'layouts/flash_msg' %>
+    <nav class="flex justify-between px-6 py-3 bg-blue-400 text-white">
       <%= link_to "HOME", root_path %>
       <%= button_to "Logout", destroy_user_session_path, method: :delete%>
     </nav>
-    <main class="container mx-auto mt-28 px-5 flex flex-col">
+    <main class="container mx-auto flex flex-col items-center mt-6">
       <%= yield %>
     </main>
   </body>
