@@ -1,33 +1,31 @@
 class CategoriesController < ApplicationController
   before_action :set_category, only: %i[ show edit update destroy ]
 
-  # GET /categories
   def index
     @current_user = current_user
     @categories = current_user.categories.all
+    @due_date_today = Task.where(category_id: @categories.pluck(:id), target_completion_date: Date.today)
   end
 
-  # GET /categories/1
   def show
-
+    @tasks = @category.tasks
   end
 
-  # GET /categories/new
   def new
     @category = Category.new
   end
 
-  # GET /categories/1/edit
   def edit
   end
 
-  # POST /categories
   def create
     @category = current_user.categories.create(category_params)
 
     if @category.save
-      redirect_to @category, notice: "Category was successfully created."
+      flash[:notice] = "Category successfully added!"
+      redirect_to root_path
     else
+      flash[:alert] = "Oops, there was a problem adding a category. Please try again."
       render :new, status: 422
     end
   end
@@ -37,15 +35,20 @@ class CategoriesController < ApplicationController
     if @category.update(category_params)
       redirect_to @category, notice: "Category was successfully updated.", status: :see_other
     else
-      render :edit, status: :unprocessable_entity
+      flash[:alert] = "Oops, there was a problem editing the category. Please try again."
+      render :edit, status: 422
     end
   end
 
   # DELETE /categories/1
   def destroy
-    @category.destroy
-    flash[:alert] = "Category permanently deleted."
-    redirect_to categories_path, status: :see_other
+    if @category.destroy
+      flash[:alert] = "Category permanently deleted."
+      redirect_to categories_path, status: :see_other
+    else
+      flash[:alert] = "Oops, there was a problem deleting the category. Please try again."
+      render :index, status: 422
+    end
   end
 
   private
