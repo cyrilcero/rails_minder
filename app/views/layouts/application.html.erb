@@ -10,13 +10,15 @@
     <%= stylesheet_link_tag "application", "data-turbo-track": "reload" %>
     <%= javascript_importmap_tags %>
   </head>
-  <body class="relative w-full min-h-dvh h-screen">
+  <body class="relative w-full min-h-dvh h-screen bg-slate-50">
     <%= render partial: 'layouts/flash_msg' %>
-    <nav class="flex justify-between px-6 py-3 bg-blue-400 text-white">
+    <nav class="flex justify-between px-6 py-3 bg-slate-800 text-slate-50">
       <%= link_to "HOME", root_path %>
-      <%= button_to "Logout", destroy_user_session_path, method: :delete%>
+      <%= button_to "Logout", destroy_user_session_path, method: :delete, data: {
+                  turbo_confirm: "Leave RailsMinder?"
+                } %>
     </nav>
-    <main class="container mx-auto flex flex-col items-center mt-6">
+    <main class="container mx-auto flex flex-col mt-6">
       <%= yield %>
     </main>
   </body>
