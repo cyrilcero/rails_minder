@@ -16,4 +16,7 @@
   <div class="inline">
     <%= form.submit class: "rounded-lg py-3 px-5 bg-blue-600 text-white inline-block font-medium cursor-pointer" %>
   </div>
+  <%= button_to category_path(@category), method: :delete, class: "rounded-lg bg-red-100 py-3 px-5 inline-block font-medium" do%>
+    <i class="fas fa-trash"></i> Delete Category
+  <% end %>
 <% end %>

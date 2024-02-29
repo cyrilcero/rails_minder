@@ -1,10 +1,7 @@
 <div class="mt-6 w-full">
-  <% if notice.present? %>
-    <p class="py-2 px-3 bg-green-50 mb-5 text-green-500 font-medium rounded-lg inline-block" id="notice"><%= notice %></p>
-  <% end %>
   <div class="flex justify-between items-center">
     <h1 class="font-bold text-4xl">Hello, <%= "#{remove_domain_from_email(@current_user.email)} !"%></h1>
-    <%= link_to "New category", new_category_path, class: "rounded-lg py-3 px-5 bg-blue-800 text-white block font-medium" %>
+    <%= link_to "Create category", new_category_path, class: "rounded-lg py-3 px-5 bg-blue-800 text-white block font-medium" %>
   </div>
 </div>
 <!--#################### --->
@@ -14,14 +11,14 @@
   <h1 class="text-2xl font-semibold">Due Tasks for Today</h1>
 </div>
 <div class="flex gap-4">
-  <% @due_date_today.each do |todo| %>
-    <div class="flex flex-col bg-red-200 rounded-lg p-4">
-      <span class="italic font-light text-xs"><%= todo.category.name %></span>
-      <span class="text-xl font-bold"><%= todo.name %></span>
-    </div>
+  <% if @due_date_today.empty? %>
+    <span class="italic font-light">-- No task due today! 👍 --</span>
+  <% else %>
+    <% @due_date_today.each do |todo| %>
+      <%= render partial: 'tasks/due_task',locals: { todo: todo } %>
+    <% end %>
   <% end %>
 </div>
-<hr class="m-4">
 <!--#################### --->
 <div class="flex justify-center gap-4 mt-6">
   <% if @categories.empty? %>
@@ -30,10 +27,10 @@
     </div>
   <% else %>
     <% @categories.each do |category| %>
-      <div class="flex flex-col">
+      <div class="flex flex-col rounded-lg">
         <div class="bg-slate-800 p-4 rounded-t-lg shadow-sm">
           <%= link_to category do %>
-            <div class="flex justify-between items-center gap-10">
+            <div class="flex justify-between items-center gap-6">
               <h1 class="text-2xl font-extrabold text-slate-50"><%= category.name %></h1>
               <div class="flex gap-2">
                 <%= link_to new_category_task_path(category), class: "rounded-lg focus:outline-none text-white bg-green-400 hover:bg-green-500 focus:ring-4 focus:ring-green-300 rounded-lg text-sm dark:focus:ring-green-900 py-2 px-4" do %>
@@ -51,15 +48,13 @@
             </div>
           <% end %>
         </div>
-        <div class="flex flex-col gap-4 bg-slate-200 p-4 rounded-b-lg shadow-sm">
+        <div class="flex flex-col justify-between bg-slate-200 p-4 rounded-b-lg shadow-sm gap-2">
           <% if category.tasks.empty? %>
             <div class="flex items-center justify-center">
               <span class="italic font-light">-- No Tasks --</span>
             </div>
           <% else %>
-            <% category.tasks.each do |task| %>
-              <%= render partial: 'tasks/task', locals: { task: task } %>
-            <% end %>
+            <%= render partial: 'tasks/task', collection: category.tasks %>
           <% end %>
         </div>
       </div>
