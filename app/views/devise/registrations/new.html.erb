@@ -1,29 +1,28 @@
-<h2>Sign up</h2>
-
-<%= form_for(resource, as: resource_name, url: registration_path(resource_name)) do |f| %>
-  <%= render "devise/shared/error_messages", resource: resource %>
-
-  <div class="field">
-    <%= f.label :email %><br />
-    <%= f.email_field :email, autofocus: true, autocomplete: "email" %>
-  </div>
-
-  <div class="field">
-    <%= f.label :password %>
-    <% if @minimum_password_length %>
-    <em>(<%= @minimum_password_length %> characters minimum)</em>
-    <% end %><br />
-    <%= f.password_field :password, autocomplete: "new-password" %>
-  </div>
-
-  <div class="field">
-    <%= f.label :password_confirmation %><br />
-    <%= f.password_field :password_confirmation, autocomplete: "new-password" %>
-  </div>
-
-  <div class="actions">
-    <%= f.submit "Sign up" %>
-  </div>
-<% end %>
-
-<%= render "devise/shared/links" %>
+<div class="bg-gray-100 flex flex-col rounded-lg p-4 mt-6 w-1/3 shadow-md">
+  <h2 class="font-bold text-3xl py-4 text-center">✒️ Sign up</h2>
+  <%= form_for(resource, as: resource_name, url: registration_path(resource_name)) do |f| %>
+    <%= render "devise/shared/error_messages", resource: resource %>
+    <div class="field pb-2">
+      <%= f.label :email %><br />
+      <%= f.email_field :email, autofocus: true, autocomplete: "email", class: "rounded-lg w-full"  %>
+    </div>
+    <div class="field pb-2">
+      <%= f.label :password %>
+      <% if @minimum_password_length %>
+        <em>(<%= @minimum_password_length %> characters minimum)</em>
+      <% end %><br />
+      <%= f.password_field :password, autocomplete: "new-password", class: "rounded-lg w-full"  %>
+    </div>
+    <div class="field pb-2">
+      <%= f.label :password_confirmation %><br />
+      <%= f.password_field :password_confirmation, autocomplete: "new-password", class: "rounded-lg w-full"  %>
+    </div>
+    <hr class="m-4">
+    <div class="flex flex-col gap-2 items-center justify-center mt-2">
+      <div class="rounded-lg bg-green-300 py-3 px-6 font-bold w-full text-center">
+        <%= f.submit "Sign up" %>
+      </div>
+      <%= link_to "Already have an account? Log in", new_user_session_path, class: "flex rounded-lg py-3 px-6 w-full gap-2 items-center justify-center" %>
+    </div>
+  <% end %>
+</div>
