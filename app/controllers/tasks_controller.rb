@@ -1,8 +1,8 @@
 class TasksController < ApplicationController
   before_action :set_category
+  before_action :set_task, only: [:show, :edit, :update]
 
   def show
-    @task = Task.find(params[:id])
   end
 
   def new
@@ -10,7 +10,6 @@ class TasksController < ApplicationController
   end
 
   def edit
-    @task = Task.find(params[:id])
   end
 
   def create
@@ -23,19 +22,32 @@ class TasksController < ApplicationController
     end
   end
 
+  def update
+    if @task.update(task_params)
+      redirect_to root_path, notice: "Category was successfully updated.", status: :see_other
+    else
+      flash[:alert] = "Oops, there was a problem editing the category. Please try again."
+      render :edit, status: 422
+    end
+  end
+
   def destroy
     @task = @category.tasks.find(params[:id])
     @task.destroy
-    redirect_to category_path(@category), status: :see_other
+    redirect_to category_path, status: :see_other
   end
 
   private
-    # Use callbacks to share common setup or constraints between actions.
+
     def set_category
       @category = Category.find(params[:category_id])
     end
 
-    # Only allow a list of trusted parameters through.
+    def set_task
+      @task = @task = Task.find(params[:id])
+    end
+
+
     def task_params
       params.require(:task).permit(:name, :description, :completed, :target_completion_date)
     end
