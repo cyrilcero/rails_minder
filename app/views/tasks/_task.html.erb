@@ -1,12 +1,16 @@
 <%= form_with model: task, url: [task.category, task], method: :patch do |form| %>
-  <div class="bg-slate-300 p-4 rounded-lg shadow-sm flex justify-between">
-    <div class="field w-full flex items-center gap-2">
-      <%= form.check_box :completed, as: :boolean, onchange: "this.form.submit()", class: "appearance-none w-4 h-4 border-2 border-blue-800 rounded-sm bg-white border" %>
-      <div class="<%= task.completed ? "italic line-through" : "" %>">
-        <%= form.label :completed, task.name %>
-      </div>
-    </div>
+  <div class="bg-slate-300 rounded-lg shadow-sm flex justify-between border-2 border-slate-800">
     <div class="flex items-center gap-2">
+      <div class="py-2 pl-4">
+        <%= form.check_box :completed, as: :boolean, onchange: "this.form.submit()", class: "appearance-none w-4 h-4 border-2 border-slate-800 rounded-full bg-white border" %>
+      </div>
+      <%= link_to category_task_path(task.category_id, task.id) do %>
+        <div class="<%= task.completed ? "italic line-through" : "w-fit grow-1" %>">
+          <%= form.label :completed, task.name %>
+        </div>
+      <% end %>
+    </div>
+    <div class="flex items-center gap-2 py-2 pr-4">
       <%= link_to edit_category_task_path(task.category_id, task.id) do %>
         <i class="fa-regular fa-pen-to-square"></i>
       <% end %>
@@ -15,4 +19,4 @@
       <% end %>
     </div>
   </div>
-<% end %>  
+<% end %>
