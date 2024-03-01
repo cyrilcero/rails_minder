@@ -21,9 +21,7 @@
     </div>
     <hr class="m-4">
     <div class="flex flex-col gap-2 items-center justify-center mt-2">
-      <div class="rounded-lg bg-green-300 py-3 px-6 font-bold w-full text-center">
-        <%= f.submit "Sign up" %>
-      </div>
+      <%= f.submit "Sign up", class: "rounded-lg bg-green-300 py-3 px-6 font-bold w-full text-center cursor-pointer" %>
       <%= link_to "Already have an account? Log in", new_user_session_path, class: "flex rounded-lg py-3 px-6 w-full gap-2 items-center justify-center" %>
     </div>
   <% end %>
