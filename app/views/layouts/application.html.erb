@@ -12,12 +12,12 @@
   </head>
   <body class="relative w-full min-h-dvh h-screen bg-slate-50">
     <%= render partial: 'layouts/flash_msg' %>
-    <nav class="flex justify-between px-6 py-3 bg-slate-800 text-slate-50">
-      <%= link_to "🧠 RailsMinder", root_path, class: "font-bold" %>
-      <%= button_to "Logout", destroy_user_session_path, class: "font-bold",  
+    <nav class="flex items-center justify-between h-14 px-6 py-3 bg-slate-800 text-slate-50 font-bold text-xl">
+      <%= link_to "🧠 RailsMinder", root_path, class: "" %>
+      <%= button_to "Logout", destroy_user_session_path, class: "",  
                   method: :delete, data: {
-                  turbo_confirm: "Leave RailsMinder?"
-                } %>
+                  turbo_confirm: "Leave RailsMinder?" 
+                } if user_signed_in? %>
     </nav>
     <main class="container mx-auto flex flex-col mt-6 items-center">
       <%= yield %>
