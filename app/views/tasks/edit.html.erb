@@ -9,8 +9,8 @@
         <% if @category.errors.any? %>
           <div class="flex flex-col justify-center">
             <% @category.errors.full_messages.each do |message| %>
-              <p class="text-red-500 text-fSize__sm lowercase font-semibold">
-                ** <%= message %>
+              <p class="text-red-500 lowercase font-semibold">
+                <%= message %>
               </p>
             <% end %>
           </div>
@@ -25,14 +25,13 @@
             <%= form.text_field :task_item %>
           </div>
           <div class="field">
-            <%= form.check_box :is_completed, as: :boolean %>
+            <%= form.check_box :completed, as: :boolean %>
             <%= form.label "Done" %>
           </div>
         </div>
-        <%= form.hidden_field :user_id, value: current_user.id %>
-        <div class="sharedlinks__bottom">
-          <%= form.button "Submit", class:"actions btn--main" %>
-          <%= link_to "Back", :back, class:"actions btn--subv1" %>
+        <div>
+          <%= form.button "Submit"%>
+          <%= link_to "Back", :back %>
         </div>
       </div>
     <% end %>
