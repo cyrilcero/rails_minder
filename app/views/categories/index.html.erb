@@ -1,7 +1,7 @@
 <div class="mt-6 w-full">
-  <div class="flex justify-between items-center">
+  <div class="flex justify-between items-center px-4 gap-4">
     <h1 class="font-bold text-4xl">Hello, <%= "#{remove_domain_from_email(@current_user.email)} !"%></h1>
-    <%= link_to "Create category", new_category_path, class: "rounded-lg py-3 px-5 bg-blue-800 text-white block font-medium" %>
+    <%= link_to "Create category", new_category_path, class: "rounded-lg text-center py-3 px-5 bg-blue-800 text-white block font-medium" %>
   </div>
 </div>
 <!--#################### --->
@@ -19,8 +19,8 @@
     <% end %>
   <% end %>
 </div>
-<!--#################### --->
-<div class="flex justify-center gap-4 mt-6">
+<!--####### DISPLAY CATEGORIES ############# --->
+<div class="flex flex-wrap justify-center gap-4 mt-6">
   <% if @categories.empty? %>
     <div class="flex items-center justify-center">
       <span class="italic font-light">-- Create your cagetory 👆 --</span>
@@ -48,6 +48,7 @@
             </div>
           <% end %>
         </div>
+        <!--####### DISPLAY TASKS ############# --->
         <div class="flex flex-col justify-between bg-slate-200 p-4 rounded-b-lg shadow-sm gap-2">
           <% if category.tasks.empty? %>
             <div class="flex items-center justify-center">
