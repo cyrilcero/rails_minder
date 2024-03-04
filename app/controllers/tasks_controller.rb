@@ -3,6 +3,7 @@ class TasksController < ApplicationController
   before_action :set_task, only: [:show, :edit, :update]
 
   def show
+    redirect_to category_path(@category)
   end
 
   def new
@@ -16,7 +17,8 @@ class TasksController < ApplicationController
     @task = @category.tasks.build(task_params)
 
     if @task.save
-      redirect_to category_path(@category), notice: "Task was successfully created."
+      redirect_to category_path(@category)
+      flash[:notice] = 'Task created successfully.'
     else
       render :new, status: 422
     end
@@ -24,9 +26,10 @@ class TasksController < ApplicationController
 
   def update
     if @task.update(task_params)
-      redirect_to root_path, notice: "Category was successfully updated.", status: :see_other
+      redirect_to root_path, status: :see_other
+      flash[:notice] = 'Task updated successfully.'
     else
-      flash[:alert] = "Oops, there was a problem editing the category. Please try again."
+      flash[:alert] = 'Failed to edit the task. Please try again.'
       render :edit, status: 422
     end
   end
@@ -35,6 +38,7 @@ class TasksController < ApplicationController
     @task = @category.tasks.find(params[:id])
     @task.destroy
     redirect_to category_path, status: :see_other
+    flash[:notice] = 'Task deleted successfully.'
   end
 
   private
