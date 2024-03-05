@@ -15,16 +15,18 @@
     <nav class="flex items-center justify-between h-16 px-6 py-3 bg-slate-800  ">
       <%= link_to "🧠 RailsMinder", root_path, class: "text-slate-50 font-bold text-3xl" %>
       <div class="flex items-center gap-6 text-slate-50 font-bold ">
-        <%= link_to edit_user_registration_path do %>
-          <div class="flex items-center gap-4 text-lg">
-            <i class="fa-solid fa-user "></i>
-            <span><%= remove_domain_from_email(current_user.email) if user_signed_in? %></span>
-          </div>
-        <% end %>
-        <%= button_to "Logout", destroy_user_session_path, class: "px-4 py-2 bg-blue-900 rounded-lg",  
+        <% if current_user.present? %>
+          <%= link_to edit_user_registration_path do %>
+            <div class="flex items-center gap-4 text-lg">
+              <i class="fa-solid fa-user "></i>
+              <span><%= remove_domain_from_email(current_user.email)%></span>
+            </div>
+          <% end %>
+          <%= button_to "Logout", destroy_user_session_path, class: "px-4 py-2 bg-blue-900 rounded-lg",  
                   method: :delete, data: {
                   turbo_confirm: "Leave RailsMinder?" 
-                } if user_signed_in? %>
+                }%>
+        <% end %>
       </div>
     </nav>
     <main class="container mx-auto flex flex-col items-center">
