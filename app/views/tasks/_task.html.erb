@@ -1,10 +1,10 @@
 <%= form_with model: task, url: [task.category, task], class: "contents", method: :patch do |form| %>
-  <div class="bg-slate-300 rounded-lg shadow-sm flex justify-between border-2 border-slate-800">
-    <div class="flex items-center gap-2">
+  <div class="flex justify-between bg-slate-300 rounded-lg shadow-sm border-2 border-slate-800 gap-2">
+    <div class="flex items-center gap-2 truncate">
       <div class="pl-4">
         <%= form.check_box :completed, as: :boolean, onchange: "this.form.submit()", class: "appearance-none w-4 h-4 border-2 border-slate-800 rounded-full bg-white border" %>
       </div>
-      <div class="<%= task.completed ? "italic line-through" : "w-fit grow-1" %>">
+      <div class="<%= task.completed ? "truncate italic line-through " : "truncate" %>">
         <%= task.name %>
       </div>
     </div>

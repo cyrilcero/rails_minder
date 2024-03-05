@@ -1,11 +1,10 @@
-<h1>
-  <%= @task.name %>
-</h1>
-<div class="form__block">
-  <h1 class="form__header">Edit task:</h1>
+<div class="flex flex-col justify-center mx-auto w-1/4 mt-6 bg-slate-200 rounded-lg p-4">
+  <div class="pb-6">
+    <h1 class="text-2xl font-bold">Edit task: <span class="text-lg font-normal"><%= @task.name %></span></h1>
+  </div>
   <div class="w-full">
     <%= form_with model: @task, url: category_task_path(@category, @task), method: :patch do |form| %>
-      <div class="w-full h-full flex flex-col justify-center gap-3 sm:gap-[1.5rem]">
+      <div class="w-full h-full flex flex-col justify-center gap-4">
         <% if @category.errors.any? %>
           <div class="flex flex-col justify-center">
             <% @category.errors.full_messages.each do |message| %>
@@ -17,21 +16,21 @@
         <% end %>
         <div class="h-full w-full flex flex-col gap-2">
           <div class="field">
-            <%= form.label "Due Date:" %>
-            <%= form.date_field :due_date %>
+            <%= form.label "Due Date:", class: "font-thin" %>
+            <%= form.date_field :due_date, class: "rounded-lg w-full border-2 border-slate-800"  %>
           </div>
           <div class="field">
-            <%= form.label "Task:" %>
-            <%= form.text_field :task_item %>
+            <%= form.label "Task:", class: "font-thin" %>
+            <%= form.text_field :task_item, class: "rounded-lg w-full border-2 border-slate-800"  %>
           </div>
           <div class="field">
-            <%= form.check_box :completed, as: :boolean %>
-            <%= form.label "Done" %>
+            <%= form.check_box :completed, as: :boolean, class: "appearance-none w-4 h-4 border-2 border-slate-800 rounded-full bg-white border"  %>
+            <%= form.label "Done", class: "font-thin"  %>
           </div>
         </div>
-        <div>
-          <%= form.button "Submit"%>
-          <%= link_to "Back", :back %>
+        <div class="flex flex-col">
+          <%= form.button "Edit", class: "rounded-lg py-3 px-5 bg-green-300 font-medium cursor-pointer" %>
+          <%= link_to "Back", :back, class: "rounded-lg py-3 px-5 font-medium text-center" %>
         </div>
       </div>
     <% end %>
