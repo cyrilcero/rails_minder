@@ -30,7 +30,8 @@
         </div>
         <div class="flex flex-col">
           <%= form.button "Edit", class: "rounded-lg py-3 px-5 bg-green-300 font-medium cursor-pointer" %>
-          <%= link_to "Back", :back, class: "rounded-lg py-3 px-5 font-medium text-center" %>
+          <%= link_to "Back to category", category_path(@category), class: "rounded-lg py-3 px-5 font-medium text-center" %>
+          <%= link_to "Home", root_path, class: "rounded-lg py-3 px-5 font-medium text-center" %>
         </div>
       </div>
     <% end %>
