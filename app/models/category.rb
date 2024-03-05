@@ -3,5 +3,5 @@ class Category < ApplicationRecord
   has_many :tasks, dependent: :destroy
 
   #validations
-  validates :name, presence: true
+  validates :name, presence: true, uniqueness: { scope: :user, case_sensitive: false }
 end
