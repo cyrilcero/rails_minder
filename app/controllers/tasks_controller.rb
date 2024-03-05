@@ -7,7 +7,7 @@ class TasksController < ApplicationController
   end
 
   def new
-    @task = Task.new
+    redirect_back(fallback_location: root_path)
   end
 
   def edit
@@ -20,13 +20,14 @@ class TasksController < ApplicationController
       redirect_to category_path(@category)
       flash[:notice] = 'Task created successfully.'
     else
-      render :new, status: 422
+      redirect_back(fallback_location: root_path)
+      flash[:alert] = 'Failed to create the task. Please try again.'
     end
   end
 
   def update
     if @task.update(task_params)
-      redirect_to root_path, status: :see_other
+      redirect_back(fallback_location: root_path)
       flash[:notice] = 'Task updated successfully.'
     else
       flash[:alert] = 'Failed to edit the task. Please try again.'
@@ -37,7 +38,7 @@ class TasksController < ApplicationController
   def destroy
     @task = @category.tasks.find(params[:id])
     @task.destroy
-    redirect_to category_path, status: :see_other
+    redirect_back(fallback_location: root_path)
     flash[:notice] = 'Task deleted successfully.'
   end
 
@@ -48,7 +49,7 @@ class TasksController < ApplicationController
     end
 
     def set_task
-      @task = @task = Task.find(params[:id])
+      @task = Task.find(params[:id])
     end
 
 
