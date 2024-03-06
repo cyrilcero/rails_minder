@@ -24,7 +24,7 @@ class CategoriesController < ApplicationController
       flash[:notice] = "Category created successfully!"
       redirect_to root_path
     else
-      flash[:alert] = "Oops, there was a problem adding a category. Please try again."
+      flash[:alert] = "Problem adding a category. Please try again."
       render :new, status: 422
     end
   end
@@ -34,7 +34,7 @@ class CategoriesController < ApplicationController
     if @category.update(category_params)
       redirect_to @category, notice: "Category updated successfully.", status: :see_other
     else
-      flash[:alert] = "Oops, there was a problem editing the category. Please try again."
+      flash[:alert] = "Problem editing the category. Please try again."
       render :edit, status: 422
     end
   end
@@ -42,10 +42,10 @@ class CategoriesController < ApplicationController
   # DELETE /categories/1
   def destroy
     if @category.destroy
-      flash[:alert] = "Category permanently deleted."
+      flash[:alert] = "Category deleted permanently."
       redirect_to categories_path, status: :see_other
     else
-      flash[:alert] = "Oops, there was a problem deleting the category. Please try again."
+      flash[:alert] = "Problem deleting the category. Please try again."
       render :index, status: 422
     end
   end
