@@ -21,7 +21,7 @@ class CategoriesController < ApplicationController
     @category = current_user.categories.create(category_params)
 
     if @category.save
-      flash[:notice] = "Category successfully added!"
+      flash[:notice] = "Category created successfully!"
       redirect_to root_path
     else
       flash[:alert] = "Oops, there was a problem adding a category. Please try again."
@@ -32,7 +32,7 @@ class CategoriesController < ApplicationController
   # PATCH/PUT /categories/1
   def update
     if @category.update(category_params)
-      redirect_to @category, notice: "Category was successfully updated.", status: :see_other
+      redirect_to @category, notice: "Category updated successfully.", status: :see_other
     else
       flash[:alert] = "Oops, there was a problem editing the category. Please try again."
       render :edit, status: 422
