@@ -16,20 +16,20 @@
         <% end %>
         <div class="h-full w-full flex flex-col gap-2">
           <div class="">
-            <%= form.label "Due Date:", class: "font-thin" %>
-            <%= form.date_field :target_completion_date, class: "rounded-lg w-full border-2 border-slate-800"  %>
-          </div>
-          <div class="">
-            <%= form.label "Task:", class: "font-thin" %>
+            <%= form.label :name, "Task:", class: "font-thin" %>
             <%= form.text_field :name, class: "rounded-lg w-full border-2 border-slate-800"  %>
           </div>
           <div class="">
+            <%= form.label :target_completion_date, "Due Date:", class: "font-thin" %>
+            <%= form.date_field :target_completion_date, class: "rounded-lg w-full border-2 border-slate-800"  %>
+          </div>
+          <div class="">
             <%= form.check_box :completed, as: :boolean, class: "appearance-none w-4 h-4 border-2 border-slate-800 rounded-full bg-white border"  %>
-            <%= form.label "Done", class: "font-thin"  %>
+            <%= form.label :completed, "Done", class: "font-thin"  %>
           </div>
         </div>
         <div class="flex flex-col">
-          <%= form.button "Edit", class: "rounded-lg py-3 px-5 bg-green-300 font-medium cursor-pointer" %>
+          <%= form.button "Update Task", class: "rounded-lg py-3 px-5 bg-green-300 font-medium cursor-pointer" %>
           <%= link_to "Back to category", category_path(@category), class: "rounded-lg py-3 px-5 font-medium text-center" %>
           <%= link_to "Home", root_path, class: "rounded-lg py-3 px-5 font-medium text-center" %>
         </div>

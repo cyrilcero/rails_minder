@@ -2,9 +2,9 @@
   <h1 class="font-bold text-xl pb-2">Add task to <%= @category.name %>:</h1>
   <div class="w-full">
     <%= form_with model: [ @category, task ] do |form| %>
-      <% if @category.errors.any? %>
+      <% if task.errors.any? %>
         <ul class="font-bold pb-4">
-          <% @category.errors.full_messages.each do |message| %>
+          <% task.errors.full_messages.each do |message| %>
             <li class="text-red-400">❌ <%= message %></li>
           <% end %>
         </ul>
@@ -13,11 +13,11 @@
     <div class="w-full h-full flex flex-col justify-center gap-3">
       <div class="h-full w-full flex flex-col gap-2">
         <div class="flex flex-col">
-          <%= form.label "Name:", class: "font-thin" %>
+          <%= form.label :name, "Name:", class: "font-thin" %>
           <%= form.text_field :name, class: "rounded-lg w-full border-2 border-slate-800" %>
         </div>
         <div class="flex flex-col">
-          <%= form.label "Due Date:", class: "font-thin" %>
+          <%= form.label :target_completion_date, "Due Date:", class: "font-thin" %>
           <%= form.date_field :target_completion_date, class: "rounded-lg w-full border-2 border-slate-800" %>
         </div>
       </div>
