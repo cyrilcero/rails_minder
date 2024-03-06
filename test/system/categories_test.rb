@@ -45,7 +45,7 @@ class CategoriesTest < ApplicationSystemTestCase
       del_btn.click
     end
 
-    assert_text "Category permanently deleted."
+    assert_text "Category deleted permanently."
   end
 
   private
