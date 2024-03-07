@@ -15,12 +15,12 @@
       </div>
     </div>
   </div>
-  <div class="flex bg-slate-200 rounded-b-lg shadow-sm">
-    <div class="flex items-center justify-center w-1/3 p-4 ">
+  <div class="flex flex-col sm:flex-none bg-slate-200 rounded-b-lg shadow-sm">
+    <div class="flex items-center justify-center w-full sm:w-1/3 p-4 ">
       <%= render partial: 'tasks/new_task', locals: {task: @category.tasks.build } %>
     </div>
     <!--####### DISPLAY TASKS ############# --->
-    <div class="w-1/3">
+    <div class="w-full sm:w-1/3">
       <div class="flex flex-col justify-between p-4 gap-2">
         <span class="font-bold">TO DO</span>
         <% if @category.tasks.empty? %>
@@ -32,7 +32,7 @@
         <% end %>
       </div>
     </div>
-    <div class="w-1/3">
+    <div class="w-full sm:w-1/3">
       <div class="flex flex-col justify-between p-4 gap-2">
         <span class="font-bold">COMPLETED</span>
         <% if @category.tasks.empty? %>
