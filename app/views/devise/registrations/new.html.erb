@@ -1,4 +1,4 @@
-<div class="bg-gray-100 flex flex-col rounded-lg p-4 mt-6 w-1/4 shadow-md border-2 border-slate-800">
+<div class="bg-gray-100 flex flex-col rounded-lg p-4 mt-6 w-3/4 sm:w-1/3 shadow-md border-2 border-slate-800">
   <h2 class="font-bold text-3xl py-3">👋</h2>
   <h2 class="font-bold text-4xl pb-6 text-slate-700">Sign up</h2>
   <%= form_for(resource, as: resource_name, url: registration_path(resource_name)) do |f| %>
@@ -23,7 +23,7 @@
     <hr class="m-4">
     <div class="flex flex-col gap-2 items-center justify-center mt-2">
       <%= f.submit "Sign up", class: "rounded-lg bg-green-300 py-3 px-6 font-bold w-full text-center cursor-pointer" %>
-      <%= link_to "Already have an account? Log in", new_user_session_path, class: "flex rounded-lg py-3 px-6 w-full gap-2 items-center justify-center" %>
+      <%= link_to "Already have an account? Log in", new_user_session_path, class: "flex rounded-lg py-3 px-6 w-full gap-2 items-center justify-center text-center" %>
     </div>
   <% end %>
 </div>
