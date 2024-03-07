@@ -58,7 +58,7 @@ class TasksTest < ApplicationSystemTestCase
 
   def login
     visit root_path
-    fill_in "Email", with: "test@test.com"
+    fill_in "Email", with: @user.email
     fill_in "Password", with: "111111"
     click_on "Login"
 
