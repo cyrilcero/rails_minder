@@ -1,4 +1,4 @@
-<div class="absolute bottom-5 right-5 z-30 ">
+<div class="fixed bottom-5 right-5 z-30 ">
   <% flash.each do |type, message| %>
     <% if type == "notice" %>
       <div data-controller="flash" data-target="flash.flash" class="flash notice py-2 px-4 bg-green-50 mb-5 text-green-500 font-medium rounded-lg shadow-md">
