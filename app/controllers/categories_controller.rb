@@ -54,10 +54,18 @@ class CategoriesController < ApplicationController
     # Use callbacks to share common setup or constraints between actions.
     def set_category
       @category = Category.find(params[:id])
+
+    rescue ActiveRecord::RecordNotFound
+      flash[:alert] = "Path invalid. Make sure your link is correct."
+      redirect_to root_path
     end
 
     # Only allow a list of trusted parameters through.
     def category_params
       params.require(:category).permit(:name)
+
+    rescue ActiveRecord::RecordNotFound
+      flash[:alert] = "Path invalid. Make sure your link is correct."
+      redirect_to root_path
     end
 end

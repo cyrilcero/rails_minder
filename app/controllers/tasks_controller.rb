@@ -46,10 +46,16 @@ class TasksController < ApplicationController
 
     def set_category
       @category = Category.find(params[:category_id])
+    rescue ActiveRecord::RecordNotFound
+      flash[:alert] = "Path invalid. Make sure your link is correct."
+      redirect_to root_path
     end
 
     def set_task
       @task = Task.find(params[:id])
+    rescue ActiveRecord::RecordNotFound
+      flash[:alert] = "Path invalid. Make sure your link is correct."
+      redirect_to root_path
     end
 
 

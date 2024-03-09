@@ -1,4 +1,4 @@
-<div class="fixed bottom-5 right-5 z-30 ">
+<!-- <div class="fixed bottom-5 right-5 z-30 ">
   <% flash.each do |type, message| %>
     <% if type == "notice" %>
       <div data-controller="flash" data-target="flash.flash" class="flash notice py-2 px-4 bg-green-50 mb-5 text-green-500 font-medium rounded-lg shadow-md">
@@ -10,4 +10,31 @@
       </div>
     <% end %>
   <% end %>
-</div>
+</div> -->
+<% if flash.present? %>
+  <% flash.each do |type, message| %>
+    <% if type == "notice" %>
+      <div 
+      data-controller="notification"
+      data-notification-delay-value="2000"
+      data-transition-enter-from="opacity-0 translate-x-6"
+      data-transition-enter-to="opacity-100 translate-x-0"
+      data-transition-leave-from="opacity-100 translate-x-0"
+      data-transition-leave-to="opacity-0 translate-x-6"
+      class="transition transform duration-1000 absolute bottom-5 right-5 z-30 py-2 px-4 bg-green-50 mb-5 text-green-500 font-medium rounded-lg shadow-md">
+        <%= message %>
+      </div>
+    <% else %>
+      <div 
+      data-controller="notification"
+      data-notification-delay-value="2000"
+      data-transition-enter-from="opacity-0 translate-x-6"
+      data-transition-enter-to="opacity-100 translate-x-0"
+      data-transition-leave-from="opacity-100 translate-x-0"
+      data-transition-leave-to="opacity-0 translate-x-6"
+      class="transition transform duration-1000 absolute bottom-5 right-5 z-30 py-2 px-4 bg-red-50 mb-5 text-red-500 font-medium rounded-lg shadow-md">
+        <%= message %>
+      </div>
+    <% end %>
+  <% end %>
+<% end %>

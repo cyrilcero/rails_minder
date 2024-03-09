@@ -12,8 +12,8 @@
   </head>
   <body class="relative w-full min-h-dvh h-screen bg-slate-50">
     <%= render partial: 'layouts/flash_msg' %>
-    <nav class="flex items-center justify-between h-16 px-6 py-3 bg-slate-800  ">
-      <%= link_to "🧠 RailsMinder", root_path, class: "text-slate-50 font-bold text-lg md:text-3xl" %>
+    <nav class="flex items-center justify-between h-16 px-6 py-3 bg-slate-800">
+      <%= link_to "🧠 RailsMinder", root_path, class: "text-slate-50 font-bold text-xl md:text-3xl" %>
       <div class="flex items-center gap-6 text-slate-50 font-bold ">
         <% if current_user.present? %>
           <%= link_to edit_user_registration_path do %>
