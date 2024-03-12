@@ -44,22 +44,22 @@ class TasksController < ApplicationController
 
   private
 
-    def set_category
-      @category = Category.find(params[:category_id])
-    rescue ActiveRecord::RecordNotFound
-      flash[:alert] = "Path invalid. Make sure your link is correct."
-      redirect_to root_path
-    end
+  def set_category
+    @category = current_user.categories.find(params[:category_id])
+  rescue ActiveRecord::RecordNotFound
+    flash[:alert] = "Path invalid. Make sure your link is correct."
+    redirect_to root_path
+  end
 
-    def set_task
-      @task = Task.find(params[:id])
-    rescue ActiveRecord::RecordNotFound
-      flash[:alert] = "Path invalid. Make sure your link is correct."
-      redirect_to root_path
-    end
+  def set_task
+    @task = current_user.tasks.find(params[:id])
+  rescue ActiveRecord::RecordNotFound
+    flash[:alert] = "Path invalid. Make sure your link is correct."
+    redirect_to root_path
+  end
 
 
-    def task_params
-      params.require(:task).permit(:name, :description, :completed, :target_completion_date)
-    end
+  def task_params
+    params.require(:task).permit(:name, :description, :completed, :target_completion_date)
+  end
 end
