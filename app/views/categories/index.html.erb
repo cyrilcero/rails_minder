@@ -7,18 +7,20 @@
 <!--#################### --->
 <!--########Today's Task######### --->
 <hr class="m-4">
-<div class="mb-4">
-  <h1 class="text-2xl font-semibold">Due Tasks for Today</h1>
-</div>
-<div class="flex gap-4 flex-wrap items-center justify-center px-4">
-  <% if @due_date_today.empty? %>
-    <span class="italic font-light">- No task due today! 👍 -</span>
-  <% else %>
-    <% @due_date_today.where(completed: false).each do |todo| %>
-      <%= render partial: 'tasks/due_task',locals: { todo: todo } %>
+<% unless @categories.empty? %>
+  <div class="mb-4">
+    <h1 class="text-2xl font-semibold">Due Tasks for Today</h1>
+  </div>
+  <div class="flex gap-4 flex-wrap items-center justify-center px-4">
+    <% if @due_date_today.empty? %>
+      <span class="italic font-light">- No task due today! 👍 -</span>
+    <% else %>
+      <% @due_date_today.where(completed: false).each do |todo| %>
+        <%= render partial: 'tasks/due_task',locals: { todo: todo } %>
+      <% end %>
     <% end %>
-  <% end %>
-</div>
+  </div>
+<% end %>
 <!--####### DISPLAY CATEGORIES ############# --->
 <div class="flex flex-wrap justify-center gap-4 mt-6 w-full ">
   <% if @categories.empty? %>
