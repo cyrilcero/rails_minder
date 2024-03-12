@@ -10,7 +10,7 @@
 <div class="mb-4">
   <h1 class="text-2xl font-semibold">Due Tasks for Today</h1>
 </div>
-<div class="flex gap-4">
+<div class="flex gap-4 flex-wrap items-center justify-center px-4">
   <% if @due_date_today.empty? %>
     <span class="italic font-light">- No task due today! 👍 -</span>
   <% else %>
