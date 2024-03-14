@@ -12,6 +12,8 @@ RailsMinder is a Ruby on Rails application that helps users organize tasks by cr
 
 - **Task Completion:** Mark tasks as completed when finished.
 
+## Demo Video
+https://www.loom.com/share/18497056afbb451296ad53d423192ea4?sid=fe65db28-ee6c-4681-adf7-6cacdb4d93e7]
 ## Getting Started
 
 ### Prerequisites
